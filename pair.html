@@ -4,22 +4,24 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>POPKID MD | WHATSAPP CONNECT</title>
-  <meta name="theme-color" content="#1a0a0a" />
+  <meta name="theme-color" content="#0a0505" />
   <link rel="icon" href="https://files.catbox.moe/b2oixn.jpg">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- High-End UI Typography Structure -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
   <style>
     :root {
       --gold: #d4af37;
-      --gold-light: #f5d77a;
-      --gold-dim: rgba(212,175,55,0.12);
-      --red: #8b0000;
-      --red-light: #c1121f;
-      --dark: #0a0404;
-      --text: #fff5f5;
-      --gray: rgba(220,200,200,0.65);
+      --gold-glow: rgba(212, 175, 55, 0.25);
+      --crimson: #991b1b;
+      --bg-main: #060303;
+      --box-bg: rgba(18, 10, 10, 0.85);
+      --border-color: rgba(212, 175, 55, 0.15);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
     }
 
     *, *::before, *::after {
@@ -29,339 +31,247 @@
     }
 
     body {
-      font-family: 'Rajdhani', sans-serif;
-      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--text-main);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      background: var(--dark);
-      padding: 90px 20px 40px;
+      background-color: var(--bg-main);
+      /* Balanced Cyberpunk tech grid alignment backdrop */
+      background-image: 
+        linear-gradient(rgba(153, 27, 27, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(153, 27, 27, 0.03) 1px, transparent 1px);
+      background-size: 24px 24px;
+      background-position: center top;
+      padding: 80px 20px 40px;
       overflow-x: hidden;
-      position: relative;
     }
 
-    /* Background atmosphere */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 70% 55% at 50% 0%, rgba(139,0,0,0.5) 0%, transparent 65%),
-        radial-gradient(ellipse 50% 40% at 90% 90%, rgba(212,175,55,0.14) 0%, transparent 55%),
-        radial-gradient(ellipse 40% 40% at 10% 70%, rgba(92,0,0,0.25) 0%, transparent 55%);
-      animation: atmoShift 10s ease-in-out infinite alternate;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    @keyframes atmoShift {
-      from { opacity: 0.8; }
-      to   { opacity: 1; }
-    }
-
-    /* Grain texture */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      opacity: 0.5;
-      z-index: 1;
-    }
-
-    /* ── NAVBAR ── */
+    /* ── PREMIUM REDESIGNED NAVBAR ── */
     .navbar {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
-      padding: 0 24px;
-      height: 56px;
+      height: 60px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(0,0,0,0.75);
-      backdrop-filter: blur(14px) saturate(1.5);
-      border-bottom: 1px solid rgba(212,175,55,0.2);
+      background: rgba(6, 3, 3, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
       z-index: 1000;
     }
 
-    .navbar::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 15%; right: 15%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.45), transparent);
-    }
-
     .navbar .brand {
-      font-family: 'Cinzel', serif;
-      font-weight: 900;
-      font-size: 1.05rem;
-      letter-spacing: 0.12em;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      background: linear-gradient(90deg, var(--gold-light), var(--red-light), var(--gold));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--text-main);
       text-decoration: none;
       display: flex;
       align-items: center;
-      gap: 9px;
+      gap: 10px;
+      transition: color 0.3s;
     }
 
     .navbar .brand i {
-      background: linear-gradient(135deg, var(--gold), var(--red-light));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-size: 1rem;
+      color: var(--gold);
+      filter: drop-shadow(0 0 8px var(--gold-glow));
     }
 
-    /* ── CARD ── */
+    .navbar .brand:hover {
+      color: var(--gold);
+    }
+
+    /* ── SYMMETRICAL BOXED TERMINAL CARD ── */
     .pair-card {
       position: relative;
-      z-index: 2;
-      max-width: 420px;
+      max-width: 440px;
       width: 100%;
-      padding: 44px 36px;
-      border-radius: 20px;
-      border: 1px solid rgba(212,175,55,0.22);
-      background: rgba(5,2,2,0.78);
-      backdrop-filter: blur(20px) saturate(1.3);
-      box-shadow:
-        0 0 0 1px rgba(139,0,0,0.15),
-        0 20px 60px rgba(0,0,0,0.8),
-        0 0 80px rgba(212,175,55,0.06);
+      padding: 40px 32px;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      background: var(--box-bg);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.03);
       text-align: center;
-      animation: cardIn 0.7s cubic-bezier(0.22,1,0.36,1) both;
     }
 
-    @keyframes cardIn {
-      from { opacity: 0; transform: translateY(24px) scale(0.98); }
-      to   { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    /* Corner ornaments */
-    .pair-card::before, .pair-card::after {
-      content: '';
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      border-color: rgba(212,175,55,0.5);
-      border-style: solid;
-    }
-    .pair-card::before {
-      top: 10px; left: 10px;
-      border-width: 2px 0 0 2px;
-      border-radius: 3px 0 0 0;
-    }
-    .pair-card::after {
-      bottom: 10px; right: 10px;
-      border-width: 0 2px 2px 0;
-      border-radius: 0 0 3px 0;
-    }
-
-    /* Top glow line */
+    /* Top accent border accent panel */
     .card-glow-line {
       position: absolute;
-      top: 0; left: 12%; right: 12%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.55), transparent);
+      top: -1px;
+      left: 30px;
+      right: 30px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--crimson), transparent);
     }
 
-    /* Card title */
     .pair-card h1 {
-      font-family: 'Cinzel', serif;
-      font-size: 1.15rem;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      background: linear-gradient(90deg, var(--gold-light), var(--red-light), var(--gold));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 8px;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--text-main);
+      margin-bottom: 6px;
+      text-transform: uppercase;
     }
 
     .pair-card > p {
-      color: var(--gray);
-      font-size: 0.9rem;
-      letter-spacing: 0.04em;
-      margin-bottom: 28px;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.4;
+      margin-bottom: 24px;
     }
 
-    /* Divider */
     .divider {
-      width: 50px;
+      width: 100%;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.4), transparent);
-      margin: 0 auto 24px;
+      background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+      margin-bottom: 24px;
     }
 
-    /* Label */
+    /* CLEAN INPUT GROUPING ARCHITECTURE */
     label {
       display: block;
       font-weight: 700;
-      font-size: 0.82rem;
-      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
       text-align: left;
       margin-bottom: 8px;
-      color: rgba(212,175,55,0.75);
+      color: var(--gold);
     }
 
-    /* Input */
     input {
       width: 100%;
-      padding: 12px 16px;
+      padding: 14px 16px;
       border-radius: 10px;
-      border: 1px solid rgba(212,175,55,0.28);
-      background: rgba(139,0,0,0.12);
-      color: var(--text);
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 1rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      margin-bottom: 18px;
+      border: 1px solid var(--border-color);
+      background: rgba(0, 0, 0, 0.4);
+      color: var(--text-main);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 1.1rem;
+      margin-bottom: 16px;
       outline: none;
-      transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+      transition: all 0.25s ease;
+      text-align: center;
     }
 
     input::placeholder {
-      color: rgba(255,255,255,0.25);
+      color: rgba(255, 255, 255, 0.15);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.9rem;
     }
 
     input:focus {
-      border-color: rgba(212,175,55,0.6);
-      background: rgba(139,0,0,0.2);
-      box-shadow: 0 0 20px rgba(212,175,55,0.1);
+      border-color: var(--gold);
+      background: rgba(153, 27, 27, 0.1);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.08);
     }
 
-    /* Pair button */
+    /* HIGH-INTERACTION CORE BUTTONS */
     .pair-btn {
-      position: relative;
       width: 100%;
-      padding: 13px;
-      border: 1px solid rgba(212,175,55,0.35);
+      padding: 14px;
+      border: 1px solid var(--crimson);
       border-radius: 10px;
-      font-family: 'Cinzel', serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.15em;
-      color: #fff;
-      background: transparent;
+      font-size: 0.9rem;
+      letter-spacing: 1.5px;
+      color: var(--text-main);
+      background: var(--crimson);
       cursor: pointer;
+      position: relative;
       overflow: hidden;
-      margin-bottom: 18px;
-      transition: all 0.25s cubic-bezier(0.22,1,0.36,1);
-    }
-
-    .pair-btn::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(139,0,0,0.8), rgba(212,175,55,0.3));
-      z-index: 0;
-      transition: opacity 0.25s;
-    }
-
-    .pair-btn::after {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%;
-      width: 60%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
-      transition: left 0.5s ease;
-      z-index: 1;
+      margin-bottom: 14px;
+      transition: all 0.25s ease;
     }
 
     .pair-btn:hover {
+      background: #b91c1c;
       border-color: var(--gold);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.5), 0 0 20px rgba(212,175,55,0.2);
+      box-shadow: 0 0 20px rgba(153, 27, 27, 0.4);
+      transform: translateY(-1px);
     }
 
-    .pair-btn:hover::after { left: 140%; }
-    .pair-btn:active { transform: translateY(0) scale(0.98); }
+    .pair-btn:active {
+      transform: translateY(0) scale(0.99);
+    }
 
-    .pair-btn span { position: relative; z-index: 2; }
-
-    /* Channel button */
     .channel-btn {
-      display: inline-flex;
+      display: flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
-      background: rgba(212,175,55,0.08);
-      color: var(--gold-light);
-      border: 1px solid rgba(212,175,55,0.25);
-      border-radius: 30px;
-      padding: 9px 20px;
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 12px;
+      width: 100%;
       text-decoration: none;
-      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.85rem;
       font-weight: 700;
-      font-size: 0.9rem;
-      letter-spacing: 0.06em;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
       transition: all 0.25s;
     }
 
     .channel-btn:hover {
-      background: rgba(212,175,55,0.15);
-      border-color: rgba(212,175,55,0.5);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      background: rgba(37, 211, 102, 0.1);
+      border-color: #25d366;
+      color: var(--text-main);
     }
 
-    .channel-btn i { color: #25d366; }
-
-    /* Output area */
+    /* TERMINAL STYLE CODES VISUALIZATION BOX */
     #pair {
-      min-height: 20px;
-      font-family: 'Rajdhani', sans-serif;
-      font-size: 1rem;
-      letter-spacing: 0.04em;
+      min-height: 24px;
     }
 
-    /* Code display */
     .code-box {
-      display: inline-block;
-      padding: 12px 20px;
+      display: block;
+      padding: 16px;
       border-radius: 10px;
-      border: 1px solid rgba(212,175,55,0.35);
-      background: rgba(212,175,55,0.06);
+      border: 1px dashed var(--gold);
+      background: rgba(212, 175, 55, 0.03);
       cursor: pointer;
-      transition: all 0.25s;
-      font-family: 'Cinzel', serif;
-      font-size: 1.3rem;
+      transition: all 0.2s;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 1.6rem;
       font-weight: 700;
-      color: var(--gold-light);
-      letter-spacing: 0.15em;
-      text-shadow: 0 0 15px rgba(212,175,55,0.4);
+      color: var(--gold);
+      letter-spacing: 4px;
     }
 
     .code-box:hover {
-      background: rgba(212,175,55,0.12);
-      border-color: var(--gold);
-      box-shadow: 0 0 20px rgba(212,175,55,0.2);
+      background: rgba(212, 175, 55, 0.08);
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
     }
 
     .code-label {
       display: block;
       font-size: 0.75rem;
-      letter-spacing: 0.12em;
+      letter-spacing: 1px;
       text-transform: uppercase;
-      color: rgba(212,175,55,0.5);
+      color: var(--text-muted);
       margin-bottom: 8px;
     }
 
-    .msg-error { color: #ff6b6b; font-weight: 600; }
-    .msg-warn  { color: var(--gold); font-weight: 600; }
-    .msg-wait  { color: rgba(212,175,55,0.7); font-weight: 600; }
+    .msg-error { color: #ef4444; font-size: 0.9rem; font-weight: 500; }
+    .msg-warn  { color: var(--gold); font-size: 0.9rem; font-weight: 500; }
+    .msg-wait  { color: var(--text-muted); font-size: 0.9rem; }
+
+    /* Unused aesthetic overrides safely hidden */
+    .pair-card::before, .pair-card::after { display: none; }
   </style>
 </head>
 
@@ -369,23 +279,24 @@
 
   <nav class="navbar">
     <a href="https://github.com/popkidmain" class="brand">
-      <i class="fas fa-robot"></i> POPKID PAIR-MD
+      <i class="fas fa-microchip"></i> POPKID TERMINAL MD
     </a>
   </nav>
 
   <div class="pair-card">
     <div class="card-glow-line"></div>
 
-    <h1>POPKID — PAIRING CODE</h1>
-    <p>Enter your WhatsApp number without the + sign</p>
+    <h1>POPKID CONFIG</h1>
+    <p>Enter your active WhatsApp runtime signature number below omitting the country '+' suffix prefixing.</p>
+    
     <div class="divider"></div>
 
-    <label for="number">Phone Number</label>
+    <label for="number">Node Target Phone Number</label>
     <input type="text" id="number" placeholder="e.g., 2541234567" />
-    <button id="submit" class="pair-btn"><span>GET CODE</span></button>
+    <button id="submit" class="pair-btn"><span>REQUEST AUTHORIZATION</span></button>
 
     <a href="https://whatsapp.com/channel/0029Vb70ySJHbFV91PNKuL3T" target="_blank" class="channel-btn">
-      <i class="fab fa-whatsapp"></i> Channel
+      <i class="fab fa-whatsapp" style="color:#25d366;"></i> Sync Community Channel
     </a>
 
     <div id="pair"></div>
@@ -400,41 +311,42 @@
       let obj = document.getElementById("copy");
       let originalText = obj.dataset.code;
       await navigator.clipboard.writeText(originalText);
-      obj.querySelector('.code-val').textContent = "COPIED ✓";
-      obj.style.color = "var(--gold-light)";
+      obj.querySelector('.code-val').textContent = "COPIED";
+      obj.style.color = "#25d366";
       setTimeout(() => {
         obj.querySelector('.code-val').textContent = originalText;
-      }, 600);
+        obj.style.color = "var(--gold)";
+      }, 700);
     }
 
     b.addEventListener("click", async (e) => {
       e.preventDefault();
 
       if (!c.value) {
-        a.innerHTML = '<p class="msg-warn">Enter your WhatsApp number with a country code</p>';
+        a.innerHTML = '<p class="msg-warn"><i class="fas fa-circle-exclamation"></i> Input parameter verification payload required.</p>';
         return;
       }
 
       if (c.value.replace(/[^0-9]/g, "").length < 11) {
-        a.innerHTML = '<p class="msg-warn">Invalid number format</p>';
+        a.innerHTML = '<p class="msg-warn"><i class="fas fa-circle-exclamation"></i> Length invalid. Confirm regional country index payload.</p>';
         return;
       }
 
       const bc = c.value.replace(/[^0-9]/g, "");
-      a.innerHTML = '<p class="msg-wait"><i class="fas fa-circle-notch fa-spin" style="margin-right:6px"></i>Please wait...</p>';
+      a.innerHTML = '<p class="msg-wait"><i class="fas fa-circle-notch fa-spin"></i> Initializing handshake sequence...</p>';
 
       try {
         let { data } = await axios.get(`/code?number=${bc}`);
         let code = data.code || "Service Unavailable";
 
         a.innerHTML =
-          '<span class="code-label">Tap to copy</span>' +
+          '<span class="code-label">Click to copy secure key</span>' +
           '<div id="copy" class="code-box" onclick="Copy()" data-code="' + code + '">' +
             '<span class="code-val">' + code + '</span>' +
           '</div>';
 
       } catch (err) {
-        a.innerHTML = '<p class="msg-error"><i class="fas fa-triangle-exclamation" style="margin-right:6px"></i>Error connecting to server</p>';
+        a.innerHTML = '<p class="msg-error"><i class="fas fa-triangle-exclamation"></i> Handshake link dropped. Server unresponsive.</p>';
       }
     });
   </script>
