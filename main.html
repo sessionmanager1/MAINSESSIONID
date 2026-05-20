@@ -2,141 +2,80 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=0.8, user-scalable=no" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
 <title>POPKID XD SESSIONS</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- Modern Google Fonts: Space Grotesk for sleek tech headings & Inter for crisp UI text -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
 <script src="https://kit.fontawesome.com/a2e0da6e4c.js" crossorigin="anonymous"></script>
 
 <style>
 :root {
-  --gold: #d4af37;
-  --gold-light: #f0d060;
-  --gold-dim: rgba(212,175,55,0.15);
-  --dark-gold: #b8860b;
-  --red: #8b0000;
-  --deep-red: #5c0000;
-  --black: #080808;
-  --glass: rgba(255,255,255,0.03);
+  --bg-dark: #070913;
+  --panel-bg: rgba(13, 17, 34, 0.7);
+  --card-bg: rgba(20, 26, 48, 0.5);
+  
+  --primary: #4f46e5;
+  --primary-glow: rgba(79, 70, 229, 0.4);
+  --cyan: #06b6d4;
+  --cyan-glow: rgba(6, 182, 212, 0.3);
+  
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border-color: rgba(255, 255, 255, 0.07);
+  --border-hover: rgba(6, 182, 212, 0.4);
 }
 
-*, *::before, *::after {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  font-family: 'Rajdhani', sans-serif;
-  background: var(--black);
-  color: var(--gold);
   min-height: 100vh;
+  background-color: var(--bg-dark);
+  /* Cyberpunk style techno-grid background overlay */
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 30px 30px;
+  background-position: center top;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-main);
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow-x: hidden;
-  position: relative;
+  padding: 20px;
 }
 
-/* Animated background */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(139,0,0,0.45) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(212,175,55,0.18) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 50% at 10% 60%, rgba(92,0,0,0.3) 0%, transparent 60%);
-  animation: bgPulse 8s ease-in-out infinite alternate;
-  z-index: 0;
-}
-
-@keyframes bgPulse {
-  0%   { opacity: 0.7; }
-  100% { opacity: 1; }
-}
-
-/* Grain overlay */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.6;
-}
-
+/* Centralized Structured Master Container */
 .main-content {
-  position: relative;
-  z-index: 2;
-  width: 95%;
+  width: 100%;
   max-width: 680px;
-  padding: 50px 44px;
-  animation: fadeUp 0.8s cubic-bezier(0.22,1,0.36,1) both;
+  background: var(--panel-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: 40px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
 }
 
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* Outer decorative border frame */
-.frame {
-  position: absolute;
-  inset: 0;
-  border-radius: 22px;
-  pointer-events: none;
-  background: rgba(0,0,0,0.72);
-  backdrop-filter: blur(18px) saturate(1.4);
-  border: 1px solid rgba(212,175,55,0.25);
-  box-shadow:
-    0 0 0 1px rgba(139,0,0,0.2),
-    0 0 60px rgba(212,175,55,0.12),
-    0 0 120px rgba(139,0,0,0.15),
-    inset 0 1px 0 rgba(255,255,255,0.05);
-}
-
-/* Corner ornaments */
-.frame::before, .frame::after {
+/* Subtle corner decoration frames */
+.main-content::before {
   content: '';
   position: absolute;
-  width: 24px;
-  height: 24px;
-  border-color: var(--gold);
-  border-style: solid;
-}
-.frame::before {
-  top: 12px; left: 12px;
-  border-width: 2px 0 0 2px;
-  border-radius: 4px 0 0 0;
-}
-.frame::after {
-  bottom: 12px; right: 12px;
-  border-width: 0 2px 2px 0;
-  border-radius: 0 0 4px 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--cyan), var(--primary));
 }
 
-.corner-br, .corner-tl {
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  border-color: var(--gold);
-  border-style: solid;
-  pointer-events: none;
-}
-.corner-tl {
-  bottom: 12px; left: 12px;
-  border-width: 0 0 2px 2px;
-  border-radius: 0 0 0 4px;
-}
-.corner-br {
-  top: 12px; right: 12px;
-  border-width: 2px 2px 0 0;
-  border-radius: 0 4px 0 0;
-}
-
-/* Logo */
+/* Logo Hub Architecture */
 .logo {
   display: flex;
   justify-content: center;
@@ -145,153 +84,135 @@ body::after {
 
 .logo-ring {
   position: relative;
-  width: 96px;
-  height: 96px;
-}
-
-.logo-ring::before {
-  content: '';
-  position: absolute;
-  inset: -4px;
+  width: 110px;
+  height: 110px;
+  padding: 5px;
   border-radius: 50%;
-  background: conic-gradient(var(--gold), var(--red), var(--gold-light), var(--dark-gold), var(--gold));
-  animation: spinRing 6s linear infinite;
-  z-index: 0;
-}
-
-.logo-ring::after {
-  content: '';
-  position: absolute;
-  inset: -2px;
-  border-radius: 50%;
-  background: var(--black);
-  z-index: 1;
-}
-
-@keyframes spinRing {
-  to { transform: rotate(360deg); }
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
 }
 
 .logo img {
-  position: relative;
-  z-index: 2;
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  display: block;
-  box-shadow: 0 0 24px rgba(212,175,55,0.5);
+  border-radius: 50%;
+  filter: drop-shadow(0 0 15px var(--primary-glow));
+  transition: transform 0.5s ease;
 }
 
-/* Title */
+.main-content:hover .logo img {
+  transform: rotate(360deg);
+}
+
+/* Clean High-Tech Header Styling */
 h1 {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(1.5rem, 5vw, 2.4rem);
-  font-weight: 900;
-  letter-spacing: 0.04em;
-  margin-bottom: 28px;
-  color: var(--gold);
-  text-shadow:
-    0 0 30px rgba(212,175,55,0.6),
-    0 0 60px rgba(212,175,55,0.2);
-  line-height: 1.2;
-}
-
-/* Status bar */
-.status-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 32px;
-  font-weight: 600;
-  font-size: 0.88rem;
-  letter-spacing: 0.08em;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
   text-transform: uppercase;
-  color: rgba(212,175,55,0.75);
-  padding: 10px 16px;
-  background: rgba(212,175,55,0.04);
-  border-top: 1px solid rgba(212,175,55,0.3);
-  border-bottom: 1px solid rgba(212,175,55,0.3);
-  position: relative;
+  background: linear-gradient(135deg, #fff 30%, var(--cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.status-bar::before, .status-bar::after {
-  content: '◆';
-  font-size: 0.5rem;
-  color: var(--gold);
-  opacity: 0.5;
-}
-
-/* Sections */
-.section {
-  margin-bottom: 24px;
-  padding: 28px 26px;
+/* Grid Balanced Status Bar Terminal */
+.status-bar {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  align-items: center;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-color);
+  padding: 14px;
   border-radius: 14px;
-  border: 1px solid rgba(212,175,55,0.2);
-  background: linear-gradient(135deg, rgba(139,0,0,0.08), rgba(212,175,55,0.04));
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 30px;
 }
 
-.section::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.5), transparent);
+#time {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--text-main);
+}
+
+.pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 10px #10b981;
+  animation: pulse 2s infinite;
+}
+
+#battery-status {
+  color: var(--cyan);
+  font-family: monospace;
+}
+
+/* Boxed Layout Compartments */
+.section {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
 }
 
 .section:hover {
-  border-color: rgba(212,175,55,0.45);
-  box-shadow: 0 0 30px rgba(212,175,55,0.07);
+  border-color: var(--border-hover);
+  box-shadow: 0 10px 30px rgba(6, 182, 212, 0.05);
+  transform: translateY(-2px);
 }
 
 .section h3 {
-  font-family: 'Cinzel', serif;
-  font-size: 1.05rem;
-  font-weight: 600;
-  margin-bottom: 20px;
-  color: var(--gold);
-  letter-spacing: 0.1em;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--cyan);
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.section h3::before {
-  content: '';
-  display: inline-block;
-  width: 18px;
-  height: 2px;
-  background: var(--gold);
-  opacity: 0.6;
-}
-
-/* Button grid */
+/* Linear Layout Buttons Grid */
 .btn-grid {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 12px;
 }
 
-/* Buttons */
+.dev-section .btn-grid {
+  grid-template-columns: 1fr 1fr;
+}
+
 .btn {
-  position: relative;
-  background: transparent;
-  border: 1px solid rgba(212,175,55,0.45);
-  padding: 13px 28px;
-  border-radius: 8px;
-  color: var(--gold);
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 700;
-  font-size: 1rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 16px 24px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.22,1,0.36,1);
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
   overflow: hidden;
 }
 
@@ -299,79 +220,81 @@ h1 {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(139,0,0,0.6), rgba(212,175,55,0.25));
+  background: linear-gradient(90deg, var(--primary), var(--cyan));
   opacity: 0;
-  transition: opacity 0.25s;
-  border-radius: 7px;
-}
-
-.btn::after {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
-  transition: left 0.4s ease;
-}
-
-.btn:hover {
-  border-color: var(--gold);
-  color: #fff;
-  transform: translateY(-2px);
-  box-shadow:
-    0 0 20px rgba(212,175,55,0.3),
-    0 4px 20px rgba(0,0,0,0.5);
-}
-
-.btn:hover::before { opacity: 1; }
-.btn:hover::after  { left: 140%; }
-
-.btn:active {
-  transform: translateY(0) scale(0.97);
+  transition: opacity 0.3s ease;
+  z-index: 1;
 }
 
 .btn span {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
-/* Footer */
+.btn:hover {
+  border-color: transparent;
+  box-shadow: 0 0 20px rgba(79, 70, 229, 0.4);
+  transform: scale(1.01);
+}
+
+.btn:hover::before {
+  opacity: 1;
+}
+
+.btn:active {
+  transform: scale(0.99);
+}
+
+/* Minimalist Clean Footer Layout */
 .footer {
-  margin-top: 32px;
-  font-size: 0.82rem;
-  letter-spacing: 0.06em;
-  color: rgba(212,175,55,0.4);
-  text-transform: uppercase;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
+  margin-top: 40px;
+  text-align: center;
 }
 
 .footer-divider {
-  width: 60px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(212,175,55,0.35), transparent);
-  margin-bottom: 12px;
+  width: 40px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 auto 20px auto;
 }
 
-/* Pulse dot for live feel */
-.pulse-dot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #22c55e;
-  box-shadow: 0 0 6px #22c55e;
-  animation: pulseDot 2s ease-in-out infinite;
-  vertical-align: middle;
-  margin-right: 5px;
+.footer div {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
 }
 
-@keyframes pulseDot {
+@keyframes pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50%       { opacity: 0.4; transform: scale(0.7); }
+  50% { opacity: 0.4; transform: scale(0.9); }
+}
+
+/* Mobile Adaptive Layout Optimization */
+@media (max-width: 580px) {
+  .main-content {
+    padding: 24px 20px;
+    border-radius: 20px;
+  }
+  
+  .status-bar {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 12px;
+  }
+  
+  .dev-section .btn-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  h1 {
+    font-size: 1.6rem;
+  }
+}
+
+/* Native Unused/Hidden elements preserved for stability but cleanly hidden from view */
+.notch, .corner-tl, .corner-br {
+  display: none;
 }
 </style>
 </head>
@@ -379,7 +302,9 @@ h1 {
 <body>
 
 <div class="main-content">
-  <div class="frame"></div>
+
+  <!-- Retained structurally for target hooks if scripts refer to them implicitly -->
+  <div class="notch"></div>
   <div class="corner-tl"></div>
   <div class="corner-br"></div>
 
@@ -392,7 +317,10 @@ h1 {
   <h1>POPKID XMD 2026</h1>
 
   <div class="status-bar">
-    <div id="time"><span class="pulse-dot"></span><span id="time-val"></span></div>
+    <div id="time">
+      <span class="pulse-dot"></span>
+      <span id="time-val"></span>
+    </div>
     <div id="date"></div>
     <div id="battery-status">
       <i class="fas fa-battery-full"></i>
@@ -400,17 +328,23 @@ h1 {
   </div>
 
   <div class="section">
-    <h3>Get Session ID</h3>
+    <h3><i class="fa-solid fa-terminal" style="font-size:0.8rem;"></i> Get Session ID</h3>
     <div class="btn-grid">
-      <button class="btn" onclick="window.open('/pair')"><span>Pair Code</span></button>
+      <button class="btn" onclick="window.open('/pair')">
+        <span>Pair Code</span>
+      </button>
     </div>
   </div>
 
   <div class="section dev-section">
-    <h3>Developer &amp; Community</h3>
+    <h3><i class="fa-solid fa-code" style="font-size:0.8rem;"></i> Developer &amp; Community</h3>
     <div class="btn-grid">
-      <button class="btn" onclick="window.open('https://github.com/popkidmain')"><span>GitHub</span></button>
-      <button class="btn" onclick="window.open('https://whatsapp.com/channel/0029Vb70ySJHbFV91PNKuL3T')"><span>WhatsApp Channel</span></button>
+      <button class="btn" onclick="window.open('https://github.com/popkidmain')">
+        <span>GitHub</span>
+      </button>
+      <button class="btn" onclick="window.open('https://whatsapp.com/channel/0029Vb70ySJHbFV91PNKuL3T')">
+        <span>WhatsApp</span>
+      </button>
     </div>
   </div>
 
