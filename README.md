@@ -2,19 +2,38 @@
 
 WhatsApp session ID generator using Baileys pair code flow + Mega.nz upload.
 
-## Deploy on Render
+## Deploy on Koyeb
+
+### Option 1 — One-click via GitHub (recommended)
 
 1. Push this folder to a GitHub repo
-2. Go to [render.com](https://render.com) → New → Web Service
-3. Connect your GitHub repo
-4. Render will auto-detect `render.yaml` — just click **Deploy**
+2. Go to [koyeb.com](https://koyeb.com) → **Create App** → **GitHub**
+3. Select your repo and branch (`main`)
+4. Set these settings:
+   | Field | Value |
+   |---|---|
+   | Builder | Buildpack (auto-detected) |
+   | Build Command | `npm install` |
+   | Run Command | `npm start` |
+   | Port | `8000` |
+5. Add environment variable: `NODE_ENV` = `production`
+6. Click **Deploy**
 
-Or manually set:
-| Field | Value |
-|---|---|
-| Build Command | `npm install` |
-| Start Command | `npm start` |
-| Node Version | 20 |
+### Option 2 — Koyeb CLI
+
+```bash
+koyeb app create session-id-popkid
+koyeb service create \
+  --app session-id-popkid \
+  --name web \
+  --git github.com/YOUR_USERNAME/YOUR_REPO \
+  --git-branch main \
+  --build-command "npm install" \
+  --run-command "npm start" \
+  --port 8000:http \
+  --env NODE_ENV=production \
+  --health-check-path /health
+```
 
 ## Routes
 
@@ -23,13 +42,11 @@ Or manually set:
 | `/` | Main landing page |
 | `/pair` | Pair code UI |
 | `/code?number=2547XXXXXXXX` | Get pair code for a number |
-| `/health` | Health check (used by Render) |
+| `/health` | Health check |
 
-## What changed for Render
+## Notes for Koyeb
 
-- `index.js` now binds to `0.0.0.0` (required by Render)
-- `PORT` defaults to `8000`, respects `process.env.PORT` (Render sets 10000)
-- `process.exit()` removed from `pair.js` — it would kill the dyno for all users; session is cleaned up gracefully instead
-- Unused/conflicting npm packages removed from `package.json`
+- App binds to `0.0.0.0:8000` — compatible with Koyeb's routing
+- `PORT` env var defaults to `8000` (Koyeb's default)
+- `/health` endpoint used for health checks
 - `temp/` folder pre-created with `.gitkeep`
-- `render.yaml` added for one-click deploy
